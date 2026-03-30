@@ -1,1 +1,1 @@
-# img-weekly-pre
+# img-weekly-prep
