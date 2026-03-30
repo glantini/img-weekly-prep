@@ -556,6 +556,82 @@
   .flag-panel { display: none; }
   .flag-panel.active { display: block; }
 
+  /* ── SALES SNAPSHOT ── */
+  .sales-snapshot {
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 20px 28px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 10px rgba(31,56,100,0.18);
+  }
+  .snapshot-label {
+    color: rgba(255,255,255,0.65);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+  .snapshot-divider {
+    width: 1px;
+    height: 36px;
+    background: rgba(255,255,255,0.15);
+    flex: 0 0 auto;
+  }
+  .snapshot-metrics {
+    display: flex;
+    gap: 0;
+    flex: 1;
+    min-width: 0;
+  }
+  .snapshot-metric {
+    flex: 1;
+    padding: 0 24px;
+    border-right: 1px solid rgba(255,255,255,0.12);
+  }
+  .snapshot-metric:first-child { padding-left: 0; }
+  .snapshot-metric:last-child { border-right: none; }
+  .snapshot-metric-label {
+    color: rgba(255,255,255,0.5);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .snapshot-metric-value {
+    color: #fff;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .snapshot-trend {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .snapshot-trend.up { color: #4ade80; }
+  .snapshot-trend.down { color: #f87171; }
+  .snapshot-metric-sub {
+    color: rgba(255,255,255,0.4);
+    font-size: 11px;
+    margin-top: 2px;
+  }
+  .snapshot-as-of {
+    color: rgba(255,255,255,0.35);
+    font-size: 10px;
+    white-space: nowrap;
+    flex: 0 0 auto;
+    align-self: flex-end;
+  }
+
   .no-meetings-msg {
     text-align: center;
     padding: 48px 24px;
@@ -628,6 +704,30 @@
 
 <div class="main">
 
+  <!-- SALES SNAPSHOT (from QuickBooks) -->
+  <div class="sales-snapshot">
+    <div class="snapshot-label">💰 Sales Snapshot</div>
+    <div class="snapshot-divider"></div>
+    <div class="snapshot-metrics">
+      <div class="snapshot-metric">
+        <div class="snapshot-metric-label">Current Month</div>
+        <div class="snapshot-metric-value">$370,024 <span class="snapshot-trend up">↑ +19.7%</span></div>
+        <div class="snapshot-metric-sub">March 2026 vs. February</div>
+      </div>
+      <div class="snapshot-metric">
+        <div class="snapshot-metric-label">Previous Month</div>
+        <div class="snapshot-metric-value">$309,219</div>
+        <div class="snapshot-metric-sub">February 2026</div>
+      </div>
+      <div class="snapshot-metric">
+        <div class="snapshot-metric-label">YTD Revenue</div>
+        <div class="snapshot-metric-value">$1,069,148</div>
+        <div class="snapshot-metric-sub">January – March 2026</div>
+      </div>
+    </div>
+    <div class="snapshot-as-of">via QuickBooks · as of Mar 30</div>
+  </div>
+
   <!-- SECTION 1 -->
   <div class="section-header">
     <div class="section-number">1</div>
@@ -645,35 +745,22 @@
     <div class="section-title">Priority Flags</div>
   </div>
   <div class="day-tabs" id="flag-day-tabs">
-    <button class="day-tab active has-actions" data-panel="fpanel-mon" type="button">
-      <span class="tab-day">Monday</span>
-      <span class="tab-date">Mar 30</span>
-      <span class="tab-badge">7</span>
+    <button class="day-tab active has-actions" data-panel="fpanel-high" type="button">
+      <span class="tab-day">🔴 High</span>
+      <span class="tab-badge">5</span>
     </button>
-    <button class="day-tab" data-panel="fpanel-tue" type="button">
-      <span class="tab-day">Tuesday</span>
-      <span class="tab-date">Mar 31</span>
-      <span class="tab-badge">3</span>
+    <button class="day-tab has-actions" data-panel="fpanel-med" type="button">
+      <span class="tab-day">🟡 Medium</span>
+      <span class="tab-badge">6</span>
     </button>
-    <button class="day-tab has-actions" data-panel="fpanel-wed" type="button">
-      <span class="tab-day">Wednesday</span>
-      <span class="tab-date">Apr 1</span>
-      <span class="tab-badge">2</span>
-    </button>
-    <button class="day-tab" data-panel="fpanel-thu" type="button">
-      <span class="tab-day">Thursday</span>
-      <span class="tab-date">Apr 2</span>
-      <span class="tab-badge">3</span>
-    </button>
-    <button class="day-tab" data-panel="fpanel-fri" type="button">
-      <span class="tab-day">Friday</span>
-      <span class="tab-date">Apr 3</span>
-      <span class="tab-badge empty">0</span>
+    <button class="day-tab" data-panel="fpanel-low" type="button">
+      <span class="tab-day">🟢 Monitor</span>
+      <span class="tab-badge">4</span>
     </button>
   </div>
 
-  <!-- MONDAY FLAG PANEL -->
-  <div class="flag-panel active" id="fpanel-mon">
+  <!-- HIGH PRIORITY PANEL -->
+  <div class="flag-panel active" id="fpanel-high">
   <div class="card flags-card">
     <div class="flag-group-header">🔴 High Priority — Needs Gil's Direct Attention</div>
     <div class="flags-grid">
@@ -709,7 +796,12 @@
       </div>
 
     </div>
+  </div>
+  </div>
 
+  <!-- MEDIUM PRIORITY PANEL -->
+  <div class="flag-panel" id="fpanel-med">
+  <div class="card flags-card">
     <div class="flag-group-header">🟡 Medium Priority — Being Managed, Needs Awareness</div>
     <div class="flags-grid">
 
@@ -724,16 +816,6 @@
         <div class="flag-emoji">🟡</div>
         <div class="flag-content"><span class="flag-label">Picerne Commercial — Spam Attack:</span> WordPress site flooded with spam comments over the weekend. Flag to web team for Akismet/reCAPTCHA review.</div>
       </div>
-
-    </div>
-  </div>
-  </div>
-
-  <!-- TUESDAY FLAG PANEL -->
-  <div class="flag-panel" id="fpanel-tue">
-  <div class="card flags-card">
-    <div class="flag-group-header">🟡 Medium Priority — Being Managed, Needs Awareness</div>
-    <div class="flags-grid">
 
       <div class="flag amber" data-check-id="flag-7">
         <label class="item-check"><input type="checkbox"><span class="cb-box"></span></label>
@@ -753,16 +835,6 @@
         <div class="flag-content"><span class="flag-label">Brightwheel Sync (Tue 11:30 AM):</span> Large account, 18 attendees. Sync with Gabriel on any open items or red flags before the call.</div>
       </div>
 
-    </div>
-  </div>
-  </div>
-
-  <!-- WEDNESDAY FLAG PANEL -->
-  <div class="flag-panel" id="fpanel-wed">
-  <div class="card flags-card">
-    <div class="flag-group-header">🟡 Medium Priority — Being Managed, Needs Awareness</div>
-    <div class="flags-grid">
-
       <div class="flag amber" data-check-id="flag-6">
         <label class="item-check"><input type="checkbox"><span class="cb-box"></span></label>
         <div class="flag-emoji">🟡</div>
@@ -770,7 +842,12 @@
       </div>
 
     </div>
+  </div>
+  </div>
 
+  <!-- MONITOR / LOW TOUCH PANEL -->
+  <div class="flag-panel" id="fpanel-low">
+  <div class="card flags-card">
     <div class="flag-group-header">🟢 Monitor / Aware — Low Touch</div>
     <div class="flags-grid">
 
@@ -779,16 +856,6 @@
         <div class="flag-emoji">🟢</div>
         <div class="flag-content"><span class="flag-label">Arc Home MCE Week 2 (Wed 10:30 AM):</span> Gaby is PM, on track. Gil accepted — monitor delivery cadence.</div>
       </div>
-
-    </div>
-  </div>
-  </div>
-
-  <!-- THURSDAY FLAG PANEL -->
-  <div class="flag-panel" id="fpanel-thu">
-  <div class="card flags-card">
-    <div class="flag-group-header">🟢 Monitor / Aware — Low Touch</div>
-    <div class="flags-grid">
 
       <div class="flag green" data-check-id="flag-13">
         <label class="item-check"><input type="checkbox"><span class="cb-box"></span></label>
@@ -810,11 +877,6 @@
 
     </div>
   </div>
-  </div>
-
-  <!-- FRIDAY FLAG PANEL -->
-  <div class="flag-panel" id="fpanel-fri">
-    <div class="no-meetings-msg"><div class="nm-icon">🏖️</div>No priority flags for Friday, April 3.</div>
   </div>
 
   <!-- SECTION 3 -->
@@ -1519,7 +1581,7 @@
 
   function initDayTabs(state) {
     initTabGroup('meeting-day-tabs', 'activeDay', 'panel-mon', state);
-    initTabGroup('flag-day-tabs', 'activeFlagDay', 'fpanel-mon', state);
+    initTabGroup('flag-day-tabs', 'activeFlagDay', 'fpanel-high', state);
   }
 
   document.addEventListener('DOMContentLoaded', function() {
