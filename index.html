@@ -643,6 +643,64 @@
   }
   .no-meetings-msg .nm-icon { font-size: 32px; margin-bottom: 12px; }
 
+  /* ── MEETING RECAP (Fireflies) ── */
+  .recap-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    border-top: 1px solid var(--border);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--blue);
+    text-align: left;
+    transition: background 0.15s;
+  }
+  .recap-toggle-btn:hover { background: #EBF2FA; }
+  .recap-toggle-btn .recap-arrow { margin-left: auto; font-size: 10px; color: var(--muted); transition: transform 0.2s; }
+  .recap-toggle-btn.open .recap-arrow { transform: rotate(180deg); }
+  .recap-body {
+    display: none;
+    padding: 14px 20px 16px;
+    background: #F8FAFE;
+    border-top: 1px solid var(--border);
+  }
+  .recap-body.open { display: block; }
+  .recap-source { font-size: 10px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .recap-bullets { margin: 0; padding: 0 0 0 18px; }
+  .recap-bullets li { font-size: 13px; color: var(--text); line-height: 1.6; margin-bottom: 4px; }
+  .recap-action { margin-top: 10px; padding: 8px 12px; background: #FEF9C3; border-left: 3px solid #D97706; border-radius: 4px; font-size: 12px; color: #92400E; }
+
+  /* ── PROPOSALS TRACKER ── */
+  .proposals-grid { display: flex; flex-direction: column; gap: 12px; }
+  .proposal-row { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; display: grid; grid-template-columns: 1fr auto; gap: 8px 16px; align-items: start; }
+  .proposal-name { font-weight: 700; font-size: 14px; color: var(--navy); }
+  .proposal-meta { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .proposal-value { font-size: 18px; font-weight: 700; color: var(--green); white-space: nowrap; text-align: right; }
+  .proposal-status-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 3px 10px; border-radius: 20px; white-space: nowrap; display: block; text-align: right; margin-top: 4px; }
+  .proposal-status-tag.sent { background: #DBEAFE; color: #1D4ED8; }
+  .proposal-status-tag.draft { background: #FEF3C7; color: #92400E; }
+  .proposal-status-tag.new-prospect { background: #EDE9FE; color: #5B21B6; }
+  .proposal-next { font-size: 12px; color: var(--text); grid-column: 1 / -1; padding-top: 10px; border-top: 1px solid var(--border); }
+  .proposal-next strong { color: var(--navy); }
+
+  /* ── CLOSE-OUT SECTION ── */
+  .closeout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 700px) { .closeout-grid { grid-template-columns: 1fr; } }
+  .closeout-card { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; }
+  .closeout-card-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted); margin-bottom: 12px; }
+  .closeout-item { display: flex; align-items: flex-start; gap: 8px; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.5; }
+  .closeout-item:last-child { border-bottom: none; }
+  .closeout-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+  .closeout-dot.done { background: #16a34a; }
+  .closeout-dot.moved { background: #d97706; }
+  .closeout-dot.invoice { background: var(--blue); }
+
   /* ── FOOTER ── */
   .footer {
     text-align: center;
@@ -1179,6 +1237,18 @@
         </ul>
       </div>
     </div>
+    <div class="meeting-recap">
+      <button class="recap-toggle-btn" data-recap-target="recap-brightwheel" type="button">🎙️ Last Meeting Recap — Feb 10 (Fireflies) <span class="recap-arrow">▼</span></button>
+      <div class="recap-body" id="recap-brightwheel">
+        <div class="recap-source">📅 February 10, 2026 · 10 min · via Fireflies AI</div>
+        <ul class="recap-bullets">
+          <li>Discussed <strong>two-phase SMS number migration strategy</strong>: 90% Amazon Pinpoint + 10% Twilio porting</li>
+          <li>Expected SMS outage window: <strong>48 hours – 1 week</strong> during porting process — Brightwheel needs to prep messaging for their users</li>
+          <li>Gabriel to document and send the number pooling process for Brightwheel's review</li>
+        </ul>
+        <div class="recap-action">⚡ Open action: Gabriel to share documented number pooling process with Brightwheel team before this sync</div>
+      </div>
+    </div>
     <div class="card-notes">
       <button class="notes-toggle-btn" data-target="notes-brightwheel" type="button">📝 My notes <span class="notes-arrow">▼</span></button>
       <div class="notes-body" id="notes-brightwheel">
@@ -1214,6 +1284,19 @@
           <li>Be ready to speak to IMG's implementation approach and similar verticals</li>
           <li>Listen for buying signals, timeline, and decision-maker involvement</li>
         </ul>
+      </div>
+    </div>
+    <div class="meeting-recap">
+      <button class="recap-toggle-btn" data-recap-target="recap-extreme-equine" type="button">🎙️ Last Meeting Recap — Mar 18 (Fireflies) <span class="recap-arrow">▼</span></button>
+      <div class="recap-body" id="recap-extreme-equine">
+        <div class="recap-source">📅 March 18, 2026 · 34 min · via Fireflies AI</div>
+        <ul class="recap-bullets">
+          <li>Discussed upgrade to <strong>Salesforce Enterprise Edition</strong> to support Shopify + QuickBooks integration</li>
+          <li>Currently ~50 licenses, planning to reduce to ~25; global expansion and <strong>commission tracking</strong> requirements are in scope</li>
+          <li>Integration goal: unify data across Shopify, QuickBooks, and Salesforce for full operational visibility</li>
+          <li>Elliott confirmed as IMG's technical resource for the follow-up reverse demo session</li>
+        </ul>
+        <div class="recap-action">⚡ Action items: Joe to send availability for follow-up · Elliott to lead technical portion of today's session</div>
       </div>
     </div>
     <div class="card-notes">
@@ -1438,6 +1521,103 @@
     </table>
   </div>
 
+
+  <!-- SECTION 5 — PREVIOUS WEEK CLOSE-OUT -->
+  <div class="section-header">
+    <div class="section-number">5</div>
+    <div class="section-title">Last Week Close-Out</div>
+  </div>
+
+  <div class="closeout-grid">
+    <div class="closeout-card">
+      <div class="closeout-card-title">✅ What Got Done (Week of Mar 23)</div>
+      <div class="closeout-item"><div class="closeout-dot done"></div><span>ImageLift × Salesforce + IMG — proposal for hours &amp; costs delivered to Thomas Gurley ($51,975–$67,650 / 315–410 hrs)</span></div>
+      <div class="closeout-item"><div class="closeout-dot done"></div><span>7 candidate interviews completed via Investigo (Consultant/PM role)</span></div>
+      <div class="closeout-item"><div class="closeout-dot done"></div><span>Arc Home MCE implementation kicked off — Week 1 completed</span></div>
+      <div class="closeout-item"><div class="closeout-dot done"></div><span>CRC Realty intro confirmed and scheduled for Mar 30</span></div>
+      <div class="closeout-item"><div class="closeout-dot done"></div><span>Extreme Equine reverse demo confirmed for Mar 31 with Aidan Allen (SF)</span></div>
+    </div>
+    <div class="closeout-card">
+      <div class="closeout-card-title">🔄 Moved to This Week</div>
+      <div class="closeout-item"><div class="closeout-dot moved"></div><span>ImageLift proposal decision — vendor comparison still pending (Thomas Gurley)</span></div>
+      <div class="closeout-item"><div class="closeout-dot moved"></div><span>Drew Brennan candidate feedback — response still owed for Friday's 7 interviews</span></div>
+      <div class="closeout-item"><div class="closeout-dot moved"></div><span>Gabriel to document Brightwheel number pooling process — not yet sent</span></div>
+      <div class="closeout-item"><div class="closeout-dot moved"></div><span>Dr. Thrower pricing/proposal revision — pending Cassie's outline of all tasks</span></div>
+    </div>
+    <div class="closeout-card">
+      <div class="closeout-card-title">🧾 QB Invoices — Last Week</div>
+      <div class="closeout-item"><div class="closeout-dot invoice"></div><span>March net income tracking at <strong>$388,887</strong> — strong close vs. Feb ($134,891)</span></div>
+      <div class="closeout-item"><div class="closeout-dot invoice"></div><span>YTD revenue: <strong>$1,069,148</strong> through March 30</span></div>
+      <div class="closeout-item"><div class="closeout-dot invoice"></div><span>Gross profit margin Mar: <strong>$611,954</strong> — highest month of Q1</span></div>
+      <div class="closeout-item"><div class="closeout-dot invoice"></div><span>Check QuickBooks for any open invoices &gt;30 days outstanding</span></div>
+    </div>
+    <div class="closeout-card">
+      <div class="closeout-card-title">📊 Q1 2026 Snapshot</div>
+      <div class="closeout-item"><div class="closeout-dot done"></div><span>Jan: $389,904 revenue · $395,280 net income</span></div>
+      <div class="closeout-item"><div class="closeout-dot moved"></div><span>Feb: $309,219 revenue · $134,891 net income (dip)</span></div>
+      <div class="closeout-item"><div class="closeout-dot done"></div><span>Mar: $370,024 revenue · $388,887 net income (strong recovery)</span></div>
+      <div class="closeout-item"><div class="closeout-dot done"></div><span>Q1 Total: <strong>$1,069,148 revenue</strong> · avg $356,383/mo</span></div>
+    </div>
+  </div>
+
+  <!-- SECTION 6 — OPEN PROPOSALS TRACKER -->
+  <div class="section-header" style="margin-top: 32px;">
+    <div class="section-number">6</div>
+    <div class="section-title">Open Proposals Tracker</div>
+  </div>
+
+  <div class="proposals-grid">
+
+    <div class="proposal-row">
+      <div>
+        <div class="proposal-name">ImageLift × Salesforce + IMG</div>
+        <div class="proposal-meta">Thomas Gurley · Sent Mar 27, 2026 · 315–410 hrs</div>
+      </div>
+      <div>
+        <div class="proposal-value">$51,975–$67,650</div>
+        <span class="proposal-status-tag sent">Sent</span>
+      </div>
+      <div class="proposal-next"><strong>Next action:</strong> Follow up with Thomas Gurley by Wed Apr 2 — vendor comparison still in progress. Proposal covers Salesforce implementation + IMG hours. PandaDoc SOW pending award.</div>
+    </div>
+
+    <div class="proposal-row">
+      <div>
+        <div class="proposal-name">CRC Realty — Discovery &amp; Proposal</div>
+        <div class="proposal-meta">James Azarian · Intro call today (Mar 30) · via Shannon Cohen &amp; Ryan Hudson (SF)</div>
+      </div>
+      <div>
+        <div class="proposal-value">TBD</div>
+        <span class="proposal-status-tag new-prospect">New Prospect</span>
+      </div>
+      <div class="proposal-next"><strong>Next action:</strong> Complete discovery on today's intro call. Identify use case (deal tracking, marketing automation, contact mgmt). Proposal to follow based on findings.</div>
+    </div>
+
+    <div class="proposal-row">
+      <div>
+        <div class="proposal-name">Dr. Thrower Med Spa — SF Health Check → Project</div>
+        <div class="proposal-meta">Angelo · Q&amp;A session Apr 1 · Cassie leads</div>
+      </div>
+      <div>
+        <div class="proposal-value">TBD</div>
+        <span class="proposal-status-tag draft">In Prep</span>
+      </div>
+      <div class="proposal-next"><strong>Next action:</strong> Cassie to outline all tasks and identify project vs. retainer split. Skincare brand = priority; med spa may be descoped. Proposal revision needed before Apr 1 Q&amp;A if budget is on the table.</div>
+    </div>
+
+    <div class="proposal-row">
+      <div>
+        <div class="proposal-name">Extreme Equine Supplements — SF Enterprise + Integration</div>
+        <div class="proposal-meta">Joe &amp; Kayla · Reverse demo Mar 31 · Aidan Allen (SF AE)</div>
+      </div>
+      <div>
+        <div class="proposal-value">TBD</div>
+        <span class="proposal-status-tag draft">Pre-Proposal</span>
+      </div>
+      <div class="proposal-next"><strong>Next action:</strong> Reverse demo on Mar 31 — listen for timeline and budget signals. Scope includes SF Enterprise Edition upgrade, Shopify + QB integration, global expansion + commission tracking. Elliott to lead technical portion.</div>
+    </div>
+
+  </div>
+
 </div>
 
 <div class="footer">
@@ -1550,6 +1730,19 @@
     });
   }
 
+  function initRecaps() {
+    document.querySelectorAll('.recap-toggle-btn').forEach(function(btn) {
+      var targetId = btn.dataset.recapTarget;
+      var body = document.getElementById(targetId);
+      if (!body) return;
+      btn.addEventListener('click', function() {
+        var isOpen = body.classList.contains('open');
+        body.classList.toggle('open', !isOpen);
+        btn.classList.toggle('open', !isOpen);
+      });
+    });
+  }
+
   function initTabGroup(containerId, stateKey, defaultPanel, state) {
     var container = document.getElementById(containerId);
     if (!container) return;
@@ -1589,6 +1782,7 @@
     initChecks(state);
     initNotes(state);
     initToggles();
+    initRecaps();
     initDayTabs(state);
     updateProgress(state);
   });
