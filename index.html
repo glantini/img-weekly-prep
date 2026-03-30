@@ -700,6 +700,17 @@
   .closeout-dot.done { background: #16a34a; }
   .closeout-dot.moved { background: #d97706; }
   .closeout-dot.invoice { background: var(--blue); }
+  .closeout-dot.expired { background: #DC2626; }
+  .closeout-dot.expiring { background: #D97706; }
+  .closeout-dot.viewed { background: #7C3AED; }
+  .closeout-dot.draft { background: #9CA3AF; }
+  .pd-status { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; padding: 1px 6px; border-radius: 8px; margin-left: 6px; vertical-align: middle; white-space: nowrap; flex-shrink: 0; }
+  .pd-status.expired { background: #FEE2E2; color: #991B1B; }
+  .pd-status.expiring { background: #FEF3C7; color: #92400E; }
+  .pd-status.viewed { background: #EDE9FE; color: #5B21B6; }
+  .pd-status.sent { background: #DBEAFE; color: #1D4ED8; }
+  .pd-status.draft { background: #F3F4F6; color: #6B7280; }
+  .closeout-item .closeout-text { flex: 1; }
 
   /* ── FOOTER ── */
   .footer {
@@ -1536,11 +1547,42 @@
       <div class="closeout-item"><div class="closeout-dot moved"></div><span>Dr. Thrower pricing/proposal revision — pending Cassie's outline of all tasks</span></div>
     </div>
     <div class="closeout-card">
-      <div class="closeout-card-title">🧾 QB Invoices — Last Week</div>
-      <div class="closeout-item"><div class="closeout-dot invoice"></div><span>March net income tracking at <strong>$388,887</strong> — strong close vs. Feb ($134,891)</span></div>
-      <div class="closeout-item"><div class="closeout-dot invoice"></div><span>YTD revenue: <strong>$1,069,148</strong> through March 30</span></div>
-      <div class="closeout-item"><div class="closeout-dot invoice"></div><span>Gross profit margin Mar: <strong>$611,954</strong> — highest month of Q1</span></div>
-      <div class="closeout-item"><div class="closeout-dot invoice"></div><span>Check QuickBooks for any open invoices &gt;30 days outstanding</span></div>
+      <div class="closeout-card-title">📄 Expiring / Expired Proposals <span style="font-size:10px;font-weight:400;color:var(--muted);">via Salesforce</span></div>
+      <div class="closeout-item">
+        <div class="closeout-dot expiring"></div>
+        <span class="closeout-text"><strong>Growth Plex AG</strong> — Sales Cloud Implementation</span>
+        <span class="pd-status expiring">Apr 1 · Gil</span>
+      </div>
+      <div class="closeout-item">
+        <div class="closeout-dot expiring"></div>
+        <span class="closeout-text"><strong>LFA Consulting</strong> — 23 Hour Block</span>
+        <span class="pd-status expiring">Apr 2 · Elliott</span>
+      </div>
+      <div class="closeout-item">
+        <div class="closeout-dot expiring"></div>
+        <span class="closeout-text"><strong>CEH Leasing</strong> — Sales Cloud Jumpstart</span>
+        <span class="pd-status expiring">Apr 3 · Gil</span>
+      </div>
+      <div class="closeout-item">
+        <div class="closeout-dot expiring"></div>
+        <span class="closeout-text"><strong>E3 Consulting</strong> — Sales Cloud Implementation</span>
+        <span class="pd-status expiring">Apr 3 · Elliott</span>
+      </div>
+      <div class="closeout-item">
+        <div class="closeout-dot expiring"></div>
+        <span class="closeout-text"><strong>Alpha Capital Funds</strong> — HubSpot → SF Migration MCAE</span>
+        <span class="pd-status expiring">Apr 4 · Cassie</span>
+      </div>
+      <div class="closeout-item">
+        <div class="closeout-dot expired"></div>
+        <span class="closeout-text"><strong>Vox Signs Retainer</strong> + <strong>Sine Global Jumpstart</strong></span>
+        <span class="pd-status expired">Exp Mar 29</span>
+      </div>
+      <div class="closeout-item">
+        <div class="closeout-dot expired"></div>
+        <span class="closeout-text"><strong>American Sanitation</strong> · <strong>Vox Signs Jumpstart</strong> · <strong>ARMS Medical</strong> · <strong>Common Cents</strong> · <strong>Revive MCAE</strong></span>
+        <span class="pd-status expired">Exp Mar 11–28</span>
+      </div>
     </div>
     <div class="closeout-card">
       <div class="closeout-card-title">📊 Q1 2026 Snapshot</div>
