@@ -748,6 +748,21 @@
   .sidebar-icon { font-size: 18px; line-height: 1; }
   .sidebar-divider { width: 36px; height: 1px; background: rgba(255,255,255,0.1); margin: 4px 0; flex-shrink: 0; }
 
+  /* ── WEEK SUMMARY (today panel top) ── */
+  .week-summary {
+    background: var(--navy);
+    padding: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .ws-eyebrow { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: rgba(255,255,255,0.45); margin-bottom: 6px; }
+  .ws-title { font-size: 15px; font-weight: 800; color: white; line-height: 1.2; margin-bottom: 4px; letter-spacing: -0.3px; }
+  .ws-sub { font-size: 10px; color: rgba(255,255,255,0.5); line-height: 1.5; margin-bottom: 12px; }
+  .ws-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .ws-stat { background: rgba(255,255,255,0.08); border-radius: 7px; padding: 7px 10px; }
+  .ws-stat-num { font-size: 20px; font-weight: 800; color: white; line-height: 1; letter-spacing: -0.5px; }
+  .ws-stat-label { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+  .ws-stat.flag .ws-stat-num { color: #FCA5A5; }
+
   /* ── TODAY PANEL ── */
   .today-panel {
     position: fixed; right: 0; top: 56px;
@@ -1650,6 +1665,17 @@
 
 <!-- TODAY PANEL -->
 <div class="today-panel">
+  <div class="week-summary">
+    <div class="ws-eyebrow">Integrated Media Group &nbsp;·&nbsp; Mar 30 – Apr 3, 2026</div>
+    <div class="ws-title">Week of March 30</div>
+    <div class="ws-sub">New business development · Marketing Cloud delivery · Active hiring</div>
+    <div class="ws-stats">
+      <div class="ws-stat"><div class="ws-stat-num">17</div><div class="ws-stat-label">Meetings</div></div>
+      <div class="ws-stat"><div class="ws-stat-num">3</div><div class="ws-stat-label">Interviews</div></div>
+      <div class="ws-stat"><div class="ws-stat-num">2</div><div class="ws-stat-label">New Prospects</div></div>
+      <div class="ws-stat flag"><div class="ws-stat-num">5 🔴</div><div class="ws-stat-label">Flags</div></div>
+    </div>
+  </div>
   <div class="today-panel-header">
     <div class="today-panel-eyebrow">Today</div>
     <div class="today-panel-date">Monday, March 30</div>
