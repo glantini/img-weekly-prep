@@ -490,6 +490,83 @@
     margin-left: 6px;
   }
 
+  /* ── DAY TABS ── */
+  .day-tabs {
+    display: flex;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 24px;
+    overflow-x: auto;
+    gap: 0;
+    scrollbar-width: none;
+  }
+  .day-tabs::-webkit-scrollbar { display: none; }
+  .day-tab {
+    flex-shrink: 0;
+    padding: 12px 20px 10px;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: center;
+    transition: all 0.15s;
+    position: relative;
+  }
+  .day-tab:hover .tab-day { color: var(--navy); }
+  .day-tab.active { border-bottom-color: var(--navy); }
+  .tab-day {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 0.2px;
+    transition: color 0.15s;
+  }
+  .day-tab.active .tab-day { color: var(--navy); }
+  .tab-date {
+    display: block;
+    font-size: 11px;
+    color: #9CA3AF;
+    margin-top: 1px;
+  }
+  .day-tab.active .tab-date { color: var(--blue); }
+  .tab-badge {
+    display: inline-block;
+    background: #EEF2F8;
+    color: var(--muted);
+    border-radius: 10px;
+    padding: 1px 7px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-top: 5px;
+  }
+  .day-tab.active .tab-badge {
+    background: var(--navy);
+    color: white;
+  }
+  .tab-badge.empty { opacity: 0.4; }
+  .day-tab.has-actions .tab-day::after {
+    content: ' ⚠️';
+    font-size: 10px;
+  }
+
+  .day-panel { display: none; }
+  .day-panel.active { display: block; }
+  .flag-panel { display: none; }
+  .flag-panel.active { display: block; }
+
+  .no-meetings-msg {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--muted);
+    font-size: 14px;
+    background: white;
+    border-radius: 12px;
+    border: 1px dashed var(--border);
+  }
+  .no-meetings-msg .nm-icon { font-size: 32px; margin-bottom: 12px; }
+
   /* ── FOOTER ── */
   .footer {
     text-align: center;
@@ -567,6 +644,36 @@
     <div class="section-number">2</div>
     <div class="section-title">Priority Flags</div>
   </div>
+  <div class="day-tabs" id="flag-day-tabs">
+    <button class="day-tab active has-actions" data-panel="fpanel-mon" type="button">
+      <span class="tab-day">Monday</span>
+      <span class="tab-date">Mar 30</span>
+      <span class="tab-badge">7</span>
+    </button>
+    <button class="day-tab" data-panel="fpanel-tue" type="button">
+      <span class="tab-day">Tuesday</span>
+      <span class="tab-date">Mar 31</span>
+      <span class="tab-badge">3</span>
+    </button>
+    <button class="day-tab has-actions" data-panel="fpanel-wed" type="button">
+      <span class="tab-day">Wednesday</span>
+      <span class="tab-date">Apr 1</span>
+      <span class="tab-badge">2</span>
+    </button>
+    <button class="day-tab" data-panel="fpanel-thu" type="button">
+      <span class="tab-day">Thursday</span>
+      <span class="tab-date">Apr 2</span>
+      <span class="tab-badge">3</span>
+    </button>
+    <button class="day-tab" data-panel="fpanel-fri" type="button">
+      <span class="tab-day">Friday</span>
+      <span class="tab-date">Apr 3</span>
+      <span class="tab-badge empty">0</span>
+    </button>
+  </div>
+
+  <!-- MONDAY FLAG PANEL -->
+  <div class="flag-panel active" id="fpanel-mon">
   <div class="card flags-card">
     <div class="flag-group-header">🔴 High Priority — Needs Gil's Direct Attention</div>
     <div class="flags-grid">
@@ -606,11 +713,27 @@
     <div class="flag-group-header">🟡 Medium Priority — Being Managed, Needs Awareness</div>
     <div class="flags-grid">
 
-      <div class="flag amber" data-check-id="flag-6">
+      <div class="flag amber" data-check-id="flag-9">
         <label class="item-check"><input type="checkbox"><span class="cb-box"></span></label>
         <div class="flag-emoji">🟡</div>
-        <div class="flag-content"><span class="flag-label">Dr. Thrower Q&amp;A (Wed 1:30 PM):</span> Scope/budget tension flagged by Cassie. Review internal prep from Monday 4 PM work session before attending Wednesday.</div>
+        <div class="flag-content"><span class="flag-label">Asana vs. Salesforce PMT:</span> Stefani's proposal circulating; Renato responded. Decision needed from Gil on direction and priority level before further team investment.</div>
       </div>
+
+      <div class="flag amber" data-check-id="flag-11">
+        <label class="item-check"><input type="checkbox"><span class="cb-box"></span></label>
+        <div class="flag-emoji">🟡</div>
+        <div class="flag-content"><span class="flag-label">Picerne Commercial — Spam Attack:</span> WordPress site flooded with spam comments over the weekend. Flag to web team for Akismet/reCAPTCHA review.</div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+  <!-- TUESDAY FLAG PANEL -->
+  <div class="flag-panel" id="fpanel-tue">
+  <div class="card flags-card">
+    <div class="flag-group-header">🟡 Medium Priority — Being Managed, Needs Awareness</div>
+    <div class="flags-grid">
 
       <div class="flag amber" data-check-id="flag-7">
         <label class="item-check"><input type="checkbox"><span class="cb-box"></span></label>
@@ -624,22 +747,26 @@
         <div class="flag-content"><span class="flag-label">Solbeg Intro (Tue 10 AM):</span> Via Benchmark International (M&amp;A broker). New relationship — clarify with Ralph whether this is acquisition interest, subcontracting, or partnership before the call.</div>
       </div>
 
-      <div class="flag amber" data-check-id="flag-9">
-        <label class="item-check"><input type="checkbox"><span class="cb-box"></span></label>
-        <div class="flag-emoji">🟡</div>
-        <div class="flag-content"><span class="flag-label">Asana vs. Salesforce PMT:</span> Stefani's proposal circulating; Renato responded. Decision needed from Gil on direction and priority level before further team investment.</div>
-      </div>
-
       <div class="flag amber" data-check-id="flag-10">
         <label class="item-check"><input type="checkbox"><span class="cb-box"></span></label>
         <div class="flag-emoji">🟡</div>
         <div class="flag-content"><span class="flag-label">Brightwheel Sync (Tue 11:30 AM):</span> Large account, 18 attendees. Sync with Gabriel on any open items or red flags before the call.</div>
       </div>
 
-      <div class="flag amber" data-check-id="flag-11">
+    </div>
+  </div>
+  </div>
+
+  <!-- WEDNESDAY FLAG PANEL -->
+  <div class="flag-panel" id="fpanel-wed">
+  <div class="card flags-card">
+    <div class="flag-group-header">🟡 Medium Priority — Being Managed, Needs Awareness</div>
+    <div class="flags-grid">
+
+      <div class="flag amber" data-check-id="flag-6">
         <label class="item-check"><input type="checkbox"><span class="cb-box"></span></label>
         <div class="flag-emoji">🟡</div>
-        <div class="flag-content"><span class="flag-label">Picerne Commercial — Spam Attack:</span> WordPress site flooded with spam comments over the weekend. Flag to web team for Akismet/reCAPTCHA review.</div>
+        <div class="flag-content"><span class="flag-label">Dr. Thrower Q&amp;A (Wed 1:30 PM):</span> Scope/budget tension flagged by Cassie. Review internal prep from Monday 4 PM work session before attending Wednesday.</div>
       </div>
 
     </div>
@@ -652,6 +779,16 @@
         <div class="flag-emoji">🟢</div>
         <div class="flag-content"><span class="flag-label">Arc Home MCE Week 2 (Wed 10:30 AM):</span> Gaby is PM, on track. Gil accepted — monitor delivery cadence.</div>
       </div>
+
+    </div>
+  </div>
+  </div>
+
+  <!-- THURSDAY FLAG PANEL -->
+  <div class="flag-panel" id="fpanel-thu">
+  <div class="card flags-card">
+    <div class="flag-group-header">🟢 Monitor / Aware — Low Touch</div>
+    <div class="flags-grid">
 
       <div class="flag green" data-check-id="flag-13">
         <label class="item-check"><input type="checkbox"><span class="cb-box"></span></label>
@@ -673,6 +810,12 @@
 
     </div>
   </div>
+  </div>
+
+  <!-- FRIDAY FLAG PANEL -->
+  <div class="flag-panel" id="fpanel-fri">
+    <div class="no-meetings-msg"><div class="nm-icon">🏖️</div>No priority flags for Friday, April 3.</div>
+  </div>
 
   <!-- SECTION 3 -->
   <div class="section-header">
@@ -680,8 +823,36 @@
     <div class="section-title">Meeting Cards</div>
   </div>
 
-  <!-- MONDAY -->
-  <div class="day-label"><div class="day-pill">Monday, March 30</div><div class="day-line"></div></div>
+  <div class="day-tabs" id="meeting-day-tabs">
+    <button class="day-tab active has-actions" data-panel="panel-mon" type="button">
+      <span class="tab-day">Monday</span>
+      <span class="tab-date">Mar 30</span>
+      <span class="tab-badge">5</span>
+    </button>
+    <button class="day-tab" data-panel="panel-tue" type="button">
+      <span class="tab-day">Tuesday</span>
+      <span class="tab-date">Mar 31</span>
+      <span class="tab-badge">3</span>
+    </button>
+    <button class="day-tab has-actions" data-panel="panel-wed" type="button">
+      <span class="tab-day">Wednesday</span>
+      <span class="tab-date">Apr 1</span>
+      <span class="tab-badge">2</span>
+    </button>
+    <button class="day-tab" data-panel="panel-thu" type="button">
+      <span class="tab-day">Thursday</span>
+      <span class="tab-date">Apr 2</span>
+      <span class="tab-badge">1</span>
+    </button>
+    <button class="day-tab" data-panel="panel-fri" type="button">
+      <span class="tab-day">Friday</span>
+      <span class="tab-date">Apr 3</span>
+      <span class="tab-badge empty">0</span>
+    </button>
+  </div>
+
+  <!-- MONDAY PANEL -->
+  <div class="day-panel active" id="panel-mon">
 
   <div class="card meeting-card">
     <div class="meeting-header">
@@ -876,8 +1047,10 @@
     </div>
   </div>
 
-  <!-- TUESDAY -->
-  <div class="day-label"><div class="day-pill">Tuesday, March 31</div><div class="day-line"></div></div>
+  </div><!-- end panel-mon -->
+
+  <!-- TUESDAY PANEL -->
+  <div class="day-panel" id="panel-tue">
 
   <div class="card meeting-card">
     <div class="meeting-header">
@@ -990,8 +1163,10 @@
     </div>
   </div>
 
-  <!-- WEDNESDAY -->
-  <div class="day-label"><div class="day-pill">Wednesday, April 1</div><div class="day-line"></div></div>
+  </div><!-- end panel-tue -->
+
+  <!-- WEDNESDAY PANEL -->
+  <div class="day-panel" id="panel-wed">
 
   <div class="card meeting-card">
     <div class="meeting-header">
@@ -1080,8 +1255,10 @@
     </div>
   </div>
 
-  <!-- THURSDAY -->
-  <div class="day-label"><div class="day-pill">Thursday, April 2</div><div class="day-line"></div></div>
+  </div><!-- end panel-wed -->
+
+  <!-- THURSDAY PANEL -->
+  <div class="day-panel" id="panel-thu">
 
   <div class="card meeting-card">
     <div class="meeting-header">
@@ -1119,6 +1296,16 @@
       </div>
     </div>
   </div>
+
+  </div><!-- end panel-thu -->
+
+  <!-- FRIDAY PANEL -->
+  <div class="day-panel" id="panel-fri">
+    <div class="no-meetings-msg">
+      <div class="nm-icon">🗓️</div>
+      No meetings scheduled for Friday, April 3.
+    </div>
+  </div><!-- end panel-fri -->
 
   <!-- SECTION 4 -->
   <div class="section-header">
@@ -1301,11 +1488,46 @@
     });
   }
 
+  function initTabGroup(containerId, stateKey, defaultPanel, state) {
+    var container = document.getElementById(containerId);
+    if (!container) return;
+    var tabs = container.querySelectorAll('.day-tab');
+    var savedPanel = state[stateKey] || defaultPanel;
+
+    tabs.forEach(function(tab) {
+      var isActive = tab.dataset.panel === savedPanel;
+      tab.classList.toggle('active', isActive);
+      var panelEl = document.getElementById(tab.dataset.panel);
+      if (panelEl) panelEl.classList.toggle('active', isActive);
+    });
+
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        tabs.forEach(function(t) {
+          t.classList.remove('active');
+          var p = document.getElementById(t.dataset.panel);
+          if (p) p.classList.remove('active');
+        });
+        tab.classList.add('active');
+        var target = document.getElementById(tab.dataset.panel);
+        if (target) target.classList.add('active');
+        state[stateKey] = tab.dataset.panel;
+        saveState(state);
+      });
+    });
+  }
+
+  function initDayTabs(state) {
+    initTabGroup('meeting-day-tabs', 'activeDay', 'panel-mon', state);
+    initTabGroup('flag-day-tabs', 'activeFlagDay', 'fpanel-mon', state);
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     const state = loadState();
     initChecks(state);
     initNotes(state);
     initToggles();
+    initDayTabs(state);
     updateProgress(state);
   });
 })();
