@@ -1009,6 +1009,33 @@
   }
   .li-draft.open { display: block; }
 
+
+  /* ── NEWS TABS ── */
+  .news-tab-bar { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
+  .news-tab-btn {
+    padding: 7px 16px; border: 1.5px solid var(--border); border-radius: 20px;
+    background: white; font-size: 12px; font-weight: 600; cursor: pointer;
+    color: var(--muted); transition: all 0.2s;
+  }
+  .news-tab-btn.active { border-color: var(--orange); background: var(--orange); color: white; }
+  .news-tab-panel { display: none; }
+  .news-tab-panel.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+
+  /* ── LINKEDIN DAY TABS ── */
+  .li-day-tabs { display: flex; gap: 6px; margin-bottom: 16px; }
+  .li-day-btn {
+    padding: 7px 18px; border: 1.5px solid var(--border); border-radius: 20px;
+    background: white; font-size: 12px; font-weight: 600; cursor: pointer;
+    color: var(--muted); transition: all 0.2s;
+  }
+  .li-day-btn.active { border-color: #0A66C2; background: #0A66C2; color: white; }
+  .li-day-panel { display: none; }
+  .li-day-panel.active { display: block; }
+
+  /* ── INTERNAL MEETING BADGE ── */
+  .mlr-badge.internal { background: #EEF2FF; color: #4F46E5; }
+  .closeout-dot.internal-dot { background: #4F46E5; }
+
 </style>
 </head>
 <body>
@@ -1053,6 +1080,13 @@
   <a class="sidebar-item" href="#section-closeout" onclick="setSidebarActive(this)">
     <span class="sidebar-icon">📋</span>Close-Out
   </a>
+  <div class="sidebar-divider"></div>
+  <a class="sidebar-item" href="#section-news" onclick="setSidebarActive(this)">
+    <span class="sidebar-icon">📰</span>News
+  </a>
+  <a class="sidebar-item" href="#section-linkedin" onclick="setSidebarActive(this)">
+    <span class="sidebar-icon">💼</span>LinkedIn
+  </a>
 </nav>
 
 
@@ -1066,7 +1100,7 @@
     <div class="snapshot-metrics">
       <div class="snapshot-metric">
         <div class="snapshot-metric-label">Current Month</div>
-        <div class="snapshot-metric-value">$373,524 <span class="snapshot-trend up">↑ +20.8%</span></div>
+        <div class="snapshot-metric-value">$370,024 <span class="snapshot-trend up">↑ +19.7%</span></div>
         <div class="snapshot-metric-sub">March 2026 vs. February</div>
       </div>
       <div class="snapshot-metric">
@@ -1076,11 +1110,11 @@
       </div>
       <div class="snapshot-metric">
         <div class="snapshot-metric-label">YTD Revenue</div>
-        <div class="snapshot-metric-value">$1,072,648</div>
+        <div class="snapshot-metric-value">$1,069,148</div>
         <div class="snapshot-metric-sub">January – March 2026</div>
       </div>
     </div>
-    <div class="snapshot-as-of">via QuickBooks · as of Mar 31</div>
+    <div class="snapshot-as-of">via QuickBooks · as of Mar 30</div>
   </div>
 
   <!-- SECTION 1 -->
@@ -1274,6 +1308,51 @@
   <div class="day-panel active" id="panel-mon">
   <div class="meeting-list">
 
+
+    <div class="mlr" data-expand="detail-weekly-prep">
+      <div class="mlr-time">8:00 AM</div>
+      <div class="mlr-info"><div class="mlr-name">Weekly Prep Review &amp; Priorities</div><div class="mlr-who">Gil — internal</div></div>
+      <span class="mlr-badge internal">Internal</span>
+      <span class="mlr-chevron">›</span>
+    </div>
+    <div class="meeting-detail" id="detail-weekly-prep">
+      <div class="meeting-body">
+        <div class="meeting-col"><div class="col-title">Purpose</div><ul>
+          <li>Review weekly prep dashboard and confirm priorities for the week</li>
+          <li>Set daily intentions and identify top 3 focus items</li>
+          <li>30-minute solo review before client meetings begin</li>
+        </ul></div>
+        <div class="meeting-col"><div class="col-title">Prep Notes</div><ul>
+          <li>Confirm all meeting cards are up to date</li>
+          <li>Review open proposals and flags before the week kicks off</li>
+          <li>Check in on any overnight Slack messages or urgent items</li>
+        </ul></div>
+      </div>
+      <div class="card-notes"><button class="notes-toggle-btn" data-target="notes-weekly-prep" type="button">📝 My notes <span class="notes-arrow">▼</span></button><div class="notes-body" id="notes-weekly-prep"><textarea class="notes-area" data-meeting-id="weekly-prep" placeholder="Add your notes, decisions, or follow-ups for this meeting…"></textarea><div class="notes-char-count" id="count-weekly-prep"></div></div></div>
+    </div>
+
+    <div class="mlr" data-expand="detail-thrower-prep">
+      <div class="mlr-time">4:00 PM</div>
+      <div class="mlr-info"><div class="mlr-name">Dr. Thrower Health Check Prep</div><div class="mlr-who">Cassie · Gaby · Stefani — internal</div></div>
+      <span class="mlr-badge internal">Internal</span>
+      <span class="mlr-chevron">›</span>
+    </div>
+    <div class="meeting-detail" id="detail-thrower-prep">
+      <div class="meeting-body">
+        <div class="meeting-col"><div class="col-title">Purpose</div><ul>
+          <li>Internal prep session for Wednesday's Dr. Thrower client call</li>
+          <li>Review Data Cloud segmentation issues and SMS credit situation</li>
+          <li>Align on messaging before presenting to client</li>
+        </ul></div>
+        <div class="meeting-col"><div class="col-title">Key Topics</div><ul>
+          <li>32K unified individuals in inactive campaigns — cleanup plan</li>
+          <li>SMS credit overconsumption (~3M credits) — compliance risk</li>
+          <li>Prepare deck and talking points for Wed Apr 1 Q&amp;A call</li>
+        </ul></div>
+      </div>
+      <div class="card-notes"><button class="notes-toggle-btn" data-target="notes-thrower-prep" type="button">📝 My notes <span class="notes-arrow">▼</span></button><div class="notes-body" id="notes-thrower-prep"><textarea class="notes-area" data-meeting-id="thrower-prep" placeholder="Add your notes, decisions, or follow-ups for this meeting…"></textarea><div class="notes-char-count" id="count-thrower-prep"></div></div></div>
+    </div>
+
     <div class="mlr" data-expand="detail-jd-young">
       <div class="mlr-time">11:00 AM</div>
       <div class="mlr-info"><div class="mlr-name">JD Young &amp; IMG: Marketing Cloud</div><div class="mlr-who">Cassie · Alexandra O'Brien, Andrew Simone (SF)</div></div>
@@ -1416,7 +1495,7 @@
           <li>Benchmark International is an M&amp;A advisory firm — call arranged via their platform</li>
           <li>Solbeg is a software development / IT services company (Eastern Europe)</li>
           <li>New relationship — no prior Fireflies or email history</li>
-          <li>Could be: acquisition target, technology partner, or referral relationship</li>
+          <li>Could be: acquisition target, technology partner, or seferral relationship</li>
         </ul></div>
         <div class="meeting-col"><div class="col-title">Prep Notes</div><ul>
           <li>Clarify purpose with Ralph before the call</li>
@@ -1448,7 +1527,7 @@
         </ul></div>
       </div>
       <div class="meeting-recap">
-        <button class="recap-toggle-btn" data-recap-target="recap-brightwheel" type="button">🎙️ Last Meeting Recap — Feb 10 (Fireflies) <span class="recap-arrow">▼</span></button>
+        <button class="recap-toggle-btn" data-recap-target="recap-brightwheel" type="button">😙️ Last Meeting Recap — Feb 10 (Fireflies) <span class="recap-arrow">▼</span></button>
         <div class="recap-body" id="recap-brightwheel">
           <div class="recap-source">📅 February 10, 2026 · 10 min · via Fireflies AI</div>
           <ul class="recap-bullets">
@@ -1483,7 +1562,7 @@
         </ul></div>
       </div>
       <div class="meeting-recap">
-        <button class="recap-toggle-btn" data-recap-target="recap-extreme-equine" type="button">🎙️ Last Meeting Recap — Mar 18 (Fireflies) <span class="recap-arrow">▼</span></button>
+        <button class="recap-toggle-btn" data-recap-target="recap-extreme-equine" type="button">😙️ Last Meeting Recap — Mar 18 (Fireflies) <span class="recap-arrow">▼</span></button>
         <div class="recap-body" id="recap-extreme-equine">
           <div class="recap-source">📅 March 18, 2026 · 34 min · via Fireflies AI</div>
           <ul class="recap-bullets">
@@ -1631,7 +1710,7 @@
     </div>
     <div class="closeout-card">
       <div class="closeout-card-title">📄 Expiring / Expired Proposals <span style="font-size:10px;font-weight:400;color:var(--muted);">via Salesforce</span></div>
-            <div class="closeout-item">
+      <div class="closeout-item">
         <div class="closeout-dot expiring"></div>
         <span class="closeout-text"><strong>Growth Plex AG</strong> — Sales Cloud Implementation</span>
         <span class="pd-status expiring">Apr 1 · Gil</span>
@@ -1653,25 +1732,25 @@
       </div>
       <div class="closeout-item">
         <div class="closeout-dot expiring"></div>
-        <span class="closeout-text"><strong>Alpha Capital Funds</strong> — HubSpot — SF Migration MCAE SC</span>
-        <span class="pd-status expiring">Apr 4 · Cassie</span>
-      </div>
-      <div class="closeout-item">
-        <div class="closeout-dot expiring"></div>
-        <span class="closeout-text"><strong>Yellow Dot Sports Marketing</strong> — Sales Cloud Emails + Alerts</span>
+        <span class="closeout-text"><strong>Alpha Capital Funds</strong> — HubSpot → SF Migration MCAE</span>
         <span class="pd-status expiring">Apr 4 · Cassie</span>
       </div>
       <div class="closeout-item">
         <div class="closeout-dot expired"></div>
-        <span class="closeout-text"><strong>Vox Signs Retainer</strong> — Sine Global Jumpstart</span>
+        <span class="closeout-text"><strong>Vox Signs Retainer</strong> + <strong>Sine Global Jumpstart</strong></span>
         <span class="pd-status expired">Exp Mar 29</span>
       </div>
       <div class="closeout-item">
         <div class="closeout-dot expired"></div>
-        <span class="closeout-text"><strong>American Sanitation · Vox Signs 20Hr Block · ARMS Medical · Common Cents · Revive MCAE</strong> — </span>
-        <span class="pd-status expired">Exp Mar 11—28</span>
+        <span class="closeout-text"><strong>American Sanitation</strong> · <strong>Vox Signs Jumpstart</strong> · <strong>ARMS Medical</strong> · <strong>Common Cents</strong> · <strong>Revive MCAE</strong></span>
+        <span class="pd-status expired">Exp Mar 11–28</span>
       </div>
-
+    </div>
+    <div class="closeout-card">
+      <div class="closeout-card-title">🔄 Last Week's Internal Meetings <span style="font-size:10px;font-weight:400;color:var(--muted);">via Fireflies · Mar 23–30</span></div>
+      <div class="closeout-item"><div class="closeout-dot internal-dot"></div><span><strong>Dr. Thrower Health Check Prep</strong> (Mar 30, 72 min) — Cassie · Gaby · Stefani<br><span style="font-size:11px;color:var(--muted);">Data Cloud segmentation issues · 32K inactive contacts · SMS credit overconsumption (~3M) · Compliance risk · Prep deck for Wed call</span></span></div>
+      <div class="closeout-item"><div class="closeout-dot internal-dot"></div><span><strong>IMG Marketing Planning</strong> (Mar 30, 31 min) — Yanira · Ralph<br><span style="font-size:11px;color:var(--muted);">New HubSpot pages · biweekly strategy meetings · 85 hr/mo cap · Slack approval "three-strike rule" · Clockify SOP live Apr 1</span></span></div>
+      <div class="closeout-item"><div class="closeout-dot internal-dot"></div><span><strong>ClubBX Website Sync</strong> (Mar 30, 15 min) — Cassie · Elliott · Carolina · Tatyana<br><span style="font-size:11px;color:var(--muted);">Quick Start site · 35 hrs · ~$6K · Custom plugin for school listings · Target launch late May</span></span></div>
     </div>
   </div>
 
@@ -1728,81 +1807,111 @@
 
   </div>
 
-</div>
+
   <div id="section-news"></div>
-  <!-- SECTION 7 — INDUSTRY NEWS -->
+  <!-- SECTION 7 — INDUSTRY NEWS (TABBED) -->
   <div class="section-header" style="margin-top: 32px;">
     <div class="section-number">7</div>
     <div class="section-title">Industry News</div>
   </div>
 
-  <div class="news-grid">
+  <div class="news-tab-bar">
+    <button class="news-tab-btn active" onclick="switchNewsTab('sf', this)">Salesforce</button>
+    <button class="news-tab-btn" onclick="switchNewsTab('hs', this)">HubSpot</button>
+    <button class="news-tab-btn" onclick="switchNewsTab('ai', this)">AI</button>
+    <button class="news-tab-btn" onclick="switchNewsTab('mkt', this)">Marketing</button>
+  </div>
 
+  <!-- Salesforce Tab -->
+  <div class="news-tab-panel active" id="news-tab-sf">
     <a class="news-card" href="https://www.salesforce.com/news/press-releases/2026/03/26/us-dept-labor-agentforce-enhance-citizen-support/" target="_blank" rel="noopener">
       <div class="news-tag sf">Salesforce / AI</div>
       <div class="news-headline">U.S. Department of Labor Taps Agentforce to Enhance Citizen Support</div>
       <div class="news-source">salesforce.com &nbsp;·&nbsp; Mar 26, 2026</div>
     </a>
-
     <a class="news-card" href="https://www.salesforce.com/news/stories/agentforce-sales-announcement/" target="_blank" rel="noopener">
       <div class="news-tag sf">Salesforce / AI</div>
       <div class="news-headline">Agentforce Sales: The 24/7 Digital Workforce Reshaping Revenue Teams</div>
       <div class="news-source">salesforce.com &nbsp;·&nbsp; Mar 2026</div>
     </a>
+    <a class="news-card" href="https://www.salesforce.com/blog/agentforce-data-cloud/" target="_blank" rel="noopener">
+      <div class="news-tag sf">Salesforce / Data</div>
+      <div class="news-headline">Data Cloud + Agentforce: Real-Time Customer Intelligence in Every Workflow</div>
+      <div class="news-source">salesforce.com &nbsp;·&nbsp; Mar 2026</div>
+    </a>
+  </div>
 
+  <!-- HubSpot Tab -->
+  <div class="news-tab-panel" id="news-tab-hs">
     <a class="news-card" href="https://developers.hubspot.com/changelog/march-2026-rollup" target="_blank" rel="noopener">
       <div class="news-tag hs">HubSpot / AI</div>
-      <div class="news-headline">HubSpot March 2026 Updates: AI Quote Content, Claude Integration & More</div>
+      <div class="news-headline">HubSpot March 2026 Updates: AI Quote Content, Claude Integration &amp; More</div>
       <div class="news-source">developers.hubspot.com &nbsp;·&nbsp; Mar 2026</div>
     </a>
+    <a class="news-card" href="https://blog.hubspot.com/marketing/hubspot-ai-tools" target="_blank" rel="noopener">
+      <div class="news-tag hs">HubSpot</div>
+      <div class="news-headline">HubSpot Breeze AI: All the New Tools That Replace Your Marketing Stack</div>
+      <div class="news-source">blog.hubspot.com &nbsp;·&nbsp; Mar 2026</div>
+    </a>
+  </div>
 
+  <!-- AI Tab -->
+  <div class="news-tab-panel" id="news-tab-ai">
     <a class="news-card" href="https://techcrunch.com/2026/03/12/sales-automation-startup-rox-ai-hits-1-2b-valuation-sources-say/" target="_blank" rel="noopener">
       <div class="news-tag ai">AI / CRM</div>
       <div class="news-headline">Sales Automation Startup Rox AI Hits $1.2B Valuation</div>
       <div class="news-source">techcrunch.com &nbsp;·&nbsp; Mar 12, 2026</div>
     </a>
-
     <a class="news-card" href="https://martech.org/how-ai-agents-will-reshape-every-part-of-marketing-in-2026/" target="_blank" rel="noopener">
       <div class="news-tag ai">AI</div>
       <div class="news-headline">How AI Agents Will Reshape Every Part of Marketing in 2026</div>
       <div class="news-source">martech.org &nbsp;·&nbsp; 2026</div>
     </a>
-
-    <a class="news-card" href="https://martech.org/4-trends-marketers-must-watch-in-2026/" target="_blank" rel="noopener">
-      <div class="news-tag mkt">Marketing</div>
-      <div class="news-headline">4 Trends Marketers Must Follow in 2026</div>
-      <div class="news-source">martech.org &nbsp;·&nbsp; 2026</div>
-    </a>
-
-    <a class="news-card" href="https://www.searchenginejournal.com/top-10-digital-marketing-trends/558503/" target="_blank" rel="noopener">
-      <div class="news-tag mkt">Marketing</div>
-      <div class="news-headline">Top 10 Digital Marketing Trends For 2026</div>
-      <div class="news-source">searchenginejournal.com &nbsp;·&nbsp; 2026</div>
-    </a>
-
     <a class="news-card" href="https://www.searchenginejournal.com/ppc-trends-2026-ai-automation-and-the-fight-for-visibility/558870/" target="_blank" rel="noopener">
       <div class="news-tag ai">Marketing / AI</div>
       <div class="news-headline">PPC Trends 2026: AI, Automation, And The Fight For Visibility</div>
       <div class="news-source">searchenginejournal.com &nbsp;·&nbsp; 2026</div>
     </a>
+  </div>
 
+  <!-- Marketing Tab -->
+  <div class="news-tab-panel" id="news-tab-mkt">
+    <a class="news-card" href="https://martech.org/4-trends-marketers-must-watch-in-2026/" target="_blank" rel="noopener">
+      <div class="news-tag mkt">Marketing</div>
+      <div class="news-headline">4 Trends Marketers Must Follow in 2026</div>
+      <div class="news-source">martech.org &nbsp;·&nbsp; 2026</div>
+    </a>
+    <a class="news-card" href="https://www.searchenginejournal.com/top-10-digital-marketing-trends/558503/" target="_blank" rel="noopener">
+      <div class="news-tag mkt">Marketing</div>
+      <div class="news-headline">Top 10 Digital Marketing Trends For 2026</div>
+      <div class="news-source">searchenginejournal.com &nbsp;·&nbsp; 2026</div>
+    </a>
   </div>
 
   <div id="section-linkedin"></div>
-  <!-- SECTION 8 — LINKEDIN SOCIAL CONTENT -->
+  <!-- SECTION 8 — LINKEDIN CONTENT CALENDAR (DAY TABS) -->
   <div class="section-header" style="margin-top: 32px;">
     <div class="section-number">8</div>
     <div class="section-title">LinkedIn Content Calendar</div>
   </div>
 
-  <!-- TODAY'S POST (featured) -->
-  <div class="li-featured">
-    <div class="li-feat-header">
-      <div class="li-feat-badge">📅 Today — Monday, Mar 30</div>
-      <div class="li-feat-topic">How we cut Salesforce deployment time with AI</div>
-      <div class="li-feat-tags">#Salesforce &nbsp;#AI &nbsp;#AgentforceAI &nbsp;#Automation &nbsp;#ConsultingInnovation</div>
-    </div>
-    <div class="li-feat-body" id="li-body-today">
+  <div class="li-day-tabs">
+    <button class="li-day-btn active" onclick="switchLiDay('mon', this)">Monday</button>
+    <button class="li-day-btn" onclick="switchLiDay('wed', this)">Wednesday</button>
+    <button class="li-day-btn" onclick="switchLiDay('fri', this)">Friday</button>
+  </div>
+
+  <!-- MONDAY PANEL -->
+  <div class="li-day-panel active" id="li-day-mon">
+
+    <!-- This Week: Mar 30 -->
+    <div class="li-featured">
+      <div class="li-feat-header">
+        <div class="li-feat-badge">📅 This Week — Monday, Mar 30</div>
+        <div class="li-feat-topic">How we cut Salesforce deployment time with AI</div>
+        <div class="li-feat-tags">#Salesforce &nbsp;#AI &nbsp;#AgentForceAI &nbsp;#Automation &nbsp;#ConsultingInnovation</div>
+      </div>
+      <div class="li-feat-body" id="li-body-mon-mar30">
 Our team just deployed 10 custom Salesforce fields and a flow in under 20 minutes. That used to take hours.
 
 Here's how AI changed our deployment workflow — and what it means for Salesforce teams in 2026:
@@ -1817,23 +1926,59 @@ This isn't about replacing Salesforce admins — it's about making them 10x more
 
 If you're a Salesforce consultant or admin and haven't built an AI-assisted deployment workflow yet, DM me. Happy to walk through what we use.
 
-#Salesforce #AI #AgentforceAI #Automation #ConsultingInnovation
-    </div>
-    <button class="li-copy-btn" onclick="liCopy('li-body-today', this)">📋 Copy Post</button>
-  </div>
-
-  <!-- UPCOMING POSTS accordion -->
-  <div class="li-upcoming-label">Upcoming Posts</div>
-  <div class="li-list">
-
-    <div class="li-row">
-      <div class="li-row-meta">
-        <span class="li-date">Wed, Apr 1</span>
-        <span class="li-cat entrepreneur">Entrepreneur</span>
+#Salesforce #AI #AgentForceAI #Automation #ConsultingInnovation
       </div>
-      <div class="li-row-topic">When you deliver a project perfectly and the client still isn't happy</div>
-      <button class="li-expand-btn" onclick="liToggle('li-apr1', this)">Show draft ▾</button>
-      <div class="li-draft" id="li-apr1">
+      <button class="li-copy-btn" onclick="liCopy('li-body-mon-mar30', this)">📋 Copy Post</button>
+    </div>
+
+    <!-- Next Week: Apr 6 -->
+    <div class="li-upcoming-label">Up Next — Monday, Apr 6</div>
+    <div class="li-list">
+      <div class="li-row">
+        <div class="li-row-meta">
+          <span class="li-date">Mon, Apr 6</span>
+          <span class="li-cat sf">Salesforce / CRM</span>
+        </div>
+        <div class="li-row-topic">5 Salesforce data hygiene habits every team should build</div>
+        <button class="li-expand-btn" onclick="liToggle('li-apr6', this)">Show draft ▾</button>
+        <div class="li-draft" id="li-apr6">
+Bad CRM data doesn't just slow you down — it costs you deals.
+
+After implementing Salesforce for dozens of clients, the #1 issue we fix isn't a missing feature. It's dirty data that's been piling up for years.
+
+Here are 5 habits that separate high-performing Salesforce orgs from the rest:
+
+1. Deduplicate on the way in, not after the fact. Use matching rules at the point of entry — not a quarterly cleanup sprint.
+
+2. Make required fields actually required. "It's required, but there's a workaround" is not a policy. Lock it down.
+
+3. Assign data ownership. Every key object should have a team or person accountable for its accuracy.
+
+4. Review reports monthly, not just when something breaks. Bad data hides in fields nobody's looking at.
+
+5. Automate validation, not just reminders. If it can be checked programmatically, it should be.
+
+The best Salesforce implementation in the world fails on garbage data. Hygiene is a strategy, not a chore.
+
+#Salesforce #CRM #DataQuality #SalesOps #RevOps
+        </div>
+        <button class="li-copy-btn" onclick="liCopy('li-apr6', this)" style="display:none" id="copy-li-apr6">📋 Copy</button>
+      </div>
+    </div>
+
+  </div><!-- end li-day-mon -->
+
+  <!-- WEDNESDAY PANEL -->
+  <div class="li-day-panel" id="li-day-wed">
+
+    <!-- This Week: Apr 1 — inspired by client work / Dr. Thrower / consulting themes -->
+    <div class="li-featured">
+      <div class="li-feat-header">
+        <div class="li-feat-badge">📅 This Week — Wednesday, Apr 1</div>
+        <div class="li-feat-topic">When you deliver a project perfectly and the client still isn't happy</div>
+        <div class="li-feat-tags">#Consulting &nbsp;#ClientSuccess &nbsp;#AgencyLife &nbsp;#BusinessGrowth &nbsp;#Entrepreneur</div>
+      </div>
+      <div class="li-feat-body" id="li-body-wed-apr1">
 You nailed the timeline. Hit every milestone. The client said "looks great" in every status call.
 
 Then the project ends and the review is… 3 stars.
@@ -1854,17 +1999,58 @@ If you've ever delivered great work and still felt like you let someone down —
 
 #Consulting #ClientSuccess #AgencyLife #BusinessGrowth #Entrepreneur
       </div>
-      <button class="li-copy-btn" onclick="liCopy('li-apr1', this)" style="display:none" id="copy-li-apr1">📋 Copy</button>
+      <button class="li-copy-btn" onclick="liCopy('li-body-wed-apr1', this)">📋 Copy Post</button>
     </div>
 
-    <div class="li-row">
-      <div class="li-row-meta">
-        <span class="li-date">Fri, Apr 3</span>
-        <span class="li-cat marketing">Marketing Strategy</span>
+    <!-- Next Week: Apr 8 — AI tools we actually use (from Fireflies/IMG Marketing meeting) -->
+    <div class="li-upcoming-label">Up Next — Wednesday, Apr 8</div>
+    <div class="li-list">
+      <div class="li-row">
+        <div class="li-row-meta">
+          <span class="li-date">Wed, Apr 8</span>
+          <span class="li-cat ai">AI &amp; Automation</span>
+        </div>
+        <div class="li-row-topic">The AI tools we actually use every week at IMG (and what we dropped)</div>
+        <button class="li-expand-btn" onclick="liToggle('li-apr8', this)">Show draft ▾</button>
+        <div class="li-draft" id="li-apr8">
+Everyone's talking about AI tools. Most people are using 2 and ignoring the rest.
+
+Here's what we actually run at Integrated Media Group on a weekly basis — and what we tried and dropped.
+
+We kept:
+- Claude (Anthropic) for long-form research, structured analysis, and drafting complex deliverables
+- Agentforce for client Salesforce orgs — we're embedding it in almost every implementation now
+- Fireflies.ai for meeting recaps and action item extraction — saves ~2 hrs/week in meeting documentation
+- Perplexity for fast research with citations — stopped Googling for most industry research
+
+We dropped:
+- Jasper — too generic for our use case, Claude handles it better
+- Copy.ai — same issue, didn't fit B2B consulting workflows
+- A half-dozen Chrome extensions that promised productivity and delivered distraction
+
+The pattern: tools that integrate into how we work = kept. Tools that require changing how we work = dropped.
+
+What's in your stack that you actually use?
+
+#AI #AITools #Productivity #MarketingTech #Salesforce #ConsultingLife
+        </div>
+        <button class="li-copy-btn" onclick="liCopy('li-apr8', this)" style="display:none" id="copy-li-apr8">📋 Copy</button>
       </div>
-      <div class="li-row-topic">The 3 questions every marketing team should answer before running ads</div>
-      <button class="li-expand-btn" onclick="liToggle('li-apr3', this)">Show draft ▾</button>
-      <div class="li-draft" id="li-apr3">
+    </div>
+
+  </div><!-- end li-day-wed -->
+
+  <!-- FRIDAY PANEL — inspired by IMG marketing cap, Clockify rollout, agency ops -->
+  <div class="li-day-panel" id="li-day-fri">
+
+    <!-- This Week: Apr 3 -->
+    <div class="li-featured">
+      <div class="li-feat-header">
+        <div class="li-feat-badge">📅 This Week — Friday, Apr 3</div>
+        <div class="li-feat-topic">The 3 questions every marketing team should answer before running ads</div>
+        <div class="li-feat-tags">#DigitalMarketing &nbsp;#PaidMedia &nbsp;#MarketingStrategy &nbsp;#B2BMarketing &nbsp;#Advertising</div>
+      </div>
+      <div class="li-feat-body" id="li-body-fri-apr3">
 Most marketing teams are running ads before they're ready to run ads.
 
 I see it constantly with clients: budget approved, creative done, campaigns live — and then the results disappoint. Not because the ads were bad. Because the foundation wasn't there.
@@ -1886,73 +2072,47 @@ DM me if you want a quick breakdown of how we run this audit for new clients.
 
 #DigitalMarketing #PaidMedia #MarketingStrategy #B2BMarketing #Advertising
       </div>
-      <button class="li-copy-btn" onclick="liCopy('li-apr3', this)" style="display:none" id="copy-li-apr3">📋 Copy</button>
+      <button class="li-copy-btn" onclick="liCopy('li-body-fri-apr3', this)">📋 Copy Post</button>
     </div>
 
-    <div class="li-row">
-      <div class="li-row-meta">
-        <span class="li-date">Mon, Apr 6</span>
-        <span class="li-cat sf">Salesforce / CRM</span>
+    <!-- Next Week: Apr 10 — inspired by Clockify/ops rollout discussion in IMG marketing meeting -->
+    <div class="li-upcoming-label">Up Next — Friday, Apr 10</div>
+    <div class="li-list">
+      <div class="li-row">
+        <div class="li-row-meta">
+          <span class="li-date">Fri, Apr 10</span>
+          <span class="li-cat entrepreneur">Agency Ops</span>
+        </div>
+        <div class="li-row-topic">How we track time and capacity at a 10-person agency (without micromanaging)</div>
+        <button class="li-expand-btn" onclick="liToggle('li-apr10', this)">Show draft ▾</button>
+        <div class="li-draft" id="li-apr10">
+We just rolled out time tracking across the whole team at IMG.
+
+Not because I wanted to micromanage. Because we were hitting capacity walls we couldn't see coming.
+
+Here's how we set it up without making people feel like they're punching a clock:
+
+1. We track to projects, not tasks. Nobody logs "answered Slack messages." They log time against a client or initiative. 15-minute minimum.
+
+2. We review hours weekly at the lead level — not daily at the individual level. The goal is capacity visibility, not surveillance.
+
+3. We capped client retainer hours at 85 hrs/month per engagement. If we're running over, we flag it in the weekly review — not after the invoice goes out.
+
+4. We built an approval flow in Slack: any work outside scope gets a quick team sign-off before it starts. Three-strike rule keeps it from becoming bureaucratic.
+
+The result: fewer surprises on billing, better project scoping, and consultants who actually know where their week went.
+
+What does capacity management look like at your agency?
+
+#AgencyLife #Consulting #OperationalExcellence #TimeManagement #SmallBusiness
+        </div>
+        <button class="li-copy-btn" onclick="liCopy('li-apr10', this)" style="display:none" id="copy-li-apr10">📋 Copy</button>
       </div>
-      <div class="li-row-topic">5 Salesforce data hygiene habits every team should build</div>
-      <button class="li-expand-btn" onclick="liToggle('li-apr6', this)">Show draft ▾</button>
-      <div class="li-draft" id="li-apr6">
-Bad CRM data doesn't just slow you down — it costs you deals.
-
-After implementing Salesforce for dozens of clients, the #1 issue we fix isn't a missing feature. It's dirty data that's been piling up for years.
-
-Here are 5 habits that separate high-performing Salesforce orgs from the rest:
-
-1. Deduplicate on the way in, not after the fact. Use matching rules at the point of entry — not a quarterly cleanup sprint.
-
-2. Make required fields actually required. "It's required, but there's a workaround" is not a policy. Lock it down.
-
-3. Assign data ownership. Every key object should have a team or person accountable for its accuracy.
-
-4. Review reports monthly, not just when something breaks. Bad data hides in fields nobody's looking at.
-
-5. Automate validation, not just reminders. If it can be checked programmatically, it should be.
-
-The best Salesforce implementation in the world fails on garbage data. Hygiene is a strategy, not a chore.
-
-#Salesforce #CRM #DataQuality #SalesOps #RevOps
-      </div>
-      <button class="li-copy-btn" onclick="liCopy('li-apr6', this)" style="display:none" id="copy-li-apr6">📋 Copy</button>
     </div>
 
-    <div class="li-row">
-      <div class="li-row-meta">
-        <span class="li-date">Wed, Apr 8</span>
-        <span class="li-cat ai">AI & Automation</span>
-      </div>
-      <div class="li-row-topic">The AI tools we actually use every week at IMG (and what we dropped)</div>
-      <button class="li-expand-btn" onclick="liToggle('li-apr8', this)">Show draft ▾</button>
-      <div class="li-draft" id="li-apr8">
-Everyone's talking about AI tools. Most people are using 2 and ignoring the rest.
+  </div><!-- end li-day-fri -->
 
-Here's what we actually run at Integrated Media Group on a weekly basis — and what we tried and dropped.
-
-We kept:
-- Claude (Anthropic) for long-form research, structured analysis, and drafting complex deliverables
-- Agentforce for client Salesforce orgs — we're embedding it in almost every implementation now
-- Fireflies.ai for meeting recaps and action item extraction — saves ~2 hrs/week in meeting documentation
-- Perplexity for fast research with citations — stopped Googling for most industry research
-
-We dropped:
-- Jasper — too generic for our use case, Claude handles it better
-- Copy.ai — same issue, didn't fit B2B consulting workflows
-- A half-dozen Chrome extensions that promised productivity and delivered distraction
-
-The pattern: tools that integrate into how we work = kept. Tools that require changing how we work = dropped.
-
-What's in your stack that you actually use?
-
-#AI #AITools #Productivity #MarketingTech #Salesforce #ConsultingLife
-      </div>
-      <button class="li-copy-btn" onclick="liCopy('li-apr8', this)" style="display:none" id="copy-li-apr8">📋 Copy</button>
-    </div>
-
-  </div>
+</div>
 
 
 
@@ -2267,6 +2427,23 @@ function liToggle(id, btn) {
     btn.textContent = 'Hide draft ▴';
     if (copyBtn) copyBtn.style.display = 'inline-block';
   }
+}
+
+
+// News tab switcher
+function switchNewsTab(tag, btn) {
+  document.querySelectorAll('.news-tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.news-tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('news-tab-' + tag).classList.add('active');
+}
+
+// LinkedIn day tab switcher
+function switchLiDay(day, btn) {
+  document.querySelectorAll('.li-day-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.li-day-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('li-day-' + day).classList.add('active');
 }
 
 </script>
